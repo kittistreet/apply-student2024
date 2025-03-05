@@ -1,65 +1,125 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Validation</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/jquery.validation/1.19.3/jquery.validate.min.js"></script>
-    <style>
-        .state-error { border: 2px solid red; }
-        .state-success { border: 2px solid green; }
-        em { color: red; font-size: 14px; }
-    </style>
-</head>
-<body>
-
-    <form id="allcp-form">
-        <div class="field">
-            <label for="firstname">First Name:</label>
-            <input type="text" name="firstname" id="firstname">
-        </div>
-        <div class="field">
-            <label for="lastname">Last Name:</label>
-            <input type="text" name="lastname" id="lastname">
-        </div>
-        <button type="submit">Submit</button>
-    </form>
-
+    <title>Bootstrap 4.6 Realtime Validation</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
     <script>
-        $(document).ready(function () {
-            $("#allcp-form").validate({
-                errorClass: "state-error",
-                validClass: "state-success",
-                errorElement: "em",
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById("multiStepForm");
 
-                rules: {
-                    firstname: { required: true },
-                    lastname: { required: true }
-                },
+            // ฟิลด์ที่ต้องตรวจสอบ
+            const fieldsToValidate = [
+                { id: "Title", message: "กรุณาเลือกคำนำหน้า" },
+                { id: "firstname", message: "กรุณากรอกชื่อ" },
+                { id: "lastname", message: "กรุณากรอกนามสกุล" },
+                { id: "email", message: "กรุณากรอกอีเมลให้ถูกต้อง", pattern: /^[^@]+@\w+\.\w+$/ },
+                { id: "phone", message: "กรุณากรอกเบอร์โทรศัพท์ 10 หลัก", pattern: /^\d{10}$/ }
+            ];
 
-                messages: {
-                    firstname: { required: "Enter first name" },
-                    lastname: { required: "Enter last name" }
-                },
+            // ตรวจสอบฟิลด์แบบเรียลไทม์
+            fieldsToValidate.forEach(field => {
+                const input = document.getElementById(field.id);
+                input.addEventListener("input", () => validateField(input, field.message, field.pattern));
+            });
 
-                highlight: function (element, errorClass, validClass) {
-                    $(element).addClass(errorClass).removeClass(validClass);
-                },
-                unhighlight: function (element, errorClass, validClass) {
-                    $(element).removeClass(errorClass).addClass(validClass);
-                },
-                errorPlacement: function (error, element) {
-                    error.insertAfter(element);
-                },
+            // ฟังก์ชันตรวจสอบค่าฟิลด์
+            function validateField(input, errorMessage, pattern = null) {
+                let value = input.value.trim();
 
-                submitHandler: function (form) {
-                    alert("Form submitted successfully!");
+                if (value === "" || (input.tagName === "SELECT" && value === "-โปรดระบุ-") || (pattern && !pattern.test(value))) {
+                    showError(input, errorMessage);
+                    return false;
+                } else {
+                    removeError(input);
+                    return true;
+                }
+            }
+
+            // ฟังก์ชันแสดงข้อผิดพลาด
+            function showError(input, message) {
+                let feedback = input.nextElementSibling;
+                feedback.textContent = message;
+                input.classList.add("is-invalid");
+                input.classList.remove("is-valid");
+            }
+
+            // ฟังก์ชันลบข้อผิดพลาด
+            function removeError(input) {
+                let feedback = input.nextElementSibling;
+                feedback.textContent = "";
+                input.classList.remove("is-invalid");
+                input.classList.add("is-valid");
+            }
+
+            // ฟังก์ชันตรวจสอบทั้งฟอร์มก่อนส่ง
+            function validateForm(event) {
+                event.preventDefault();
+                let isValid = true;
+
+                fieldsToValidate.forEach(field => {
+                    const input = document.getElementById(field.id);
+                    if (!validateField(input, field.message, field.pattern)) {
+                        isValid = false;
+                    }
+                });
+
+                if (isValid) {
+                    alert("✅ ส่งฟอร์มสำเร็จ!");
                     form.submit();
                 }
-            });
+            }
+
+            // ดักจับ Event Submit ฟอร์ม
+            form.addEventListener("submit", validateForm);
         });
     </script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>กรอกข้อมูลสมัครเรียน</h2>
+        <form id="multiStepForm" novalidate>
+            <div class="form-group">
+                <label>คำนำหน้า <span class="text-danger">*</span></label>
+                <select class="form-control" id="Title" name="Title">
+                    <option>-โปรดระบุ-</option>
+                    <option value="1">นาย</option>
+                    <option value="2">นาง</option>
+                    <option value="3">นางสาว</option>
+                </select>
+                <div class="invalid-feedback"></div>
+            </div>
 
+            <div class="form-group">
+                <label>ชื่อ <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="firstname" name="firstname" placeholder="ระบุชื่อ...">
+                <div class="invalid-feedback"></div>
+            </div>
+
+            <div class="form-group">
+                <label>นามสกุล <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="lastname" name="lastname" placeholder="ระบุนามสกุล...">
+                <div class="invalid-feedback"></div>
+            </div>
+
+            <div class="form-group">
+                <label>อีเมล <span class="text-danger">*</span></label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="example@email.com">
+                <div class="invalid-feedback"></div>
+            </div>
+
+            <div class="form-group">
+                <label>เบอร์โทรศัพท์ <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="phone" name="phone" placeholder="กรอกเบอร์โทร 10 หลัก">
+                <div class="invalid-feedback"></div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">ส่งข้อมูล</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
