@@ -1,0 +1,47 @@
+<!-- step-1 -->
+<li class="nav-item ">
+    <a class="nav-link" href="#">
+        <i class="fas fa-fw fa-folder"></i>
+        <span>Accept PDPA</span></a>
+</li>
+
+<!-- Divider -->
+<hr class="sidebar-divider">
+
+<!-- Heading -->
+<div class="sidebar-heading">
+    from information
+</div>
+<!-- step-2 -->
+<li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" aria-expanded="true" aria-controls="collapsePages">
+        <i class="fas fa-fw fa-folder"></i>
+        <span>Education</span>
+    </a>
+
+</li>
+<!-- step-3 -->
+<li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-fw fa-folder"></i>
+        <span>Personal</span>
+    </a>
+
+</li>
+
+<div class="container">
+    <div id="step-1" >
+        <?php include 'stepPDPA.php'; ?>
+    </div>
+
+
+    <div id="step-2" class="hidden">
+        <?php include 'step2.php'; ?>
+    </div>
+
+
+    <div id="step-3" class="hidden">
+        <?php include 'step3.php'; ?>
+    </div>
+
+</div>

@@ -1,0 +1,10 @@
+{
+    "phra-nakhon": [
+        { "value": "chana-songkhram", "text": "แขวงชนะสงคราม" },
+        { "value": "bowon-niwet", "text": "แขวงบวรนิเวศ" }
+    ],
+    "dusit": [
+        { "value": "dusit", "text": "แขวงดุสิต" },
+        { "value": "wachira-phayaban", "text": "แขวงวชิรพยาบาล" }
+    ]
+}

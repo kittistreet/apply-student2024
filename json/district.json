@@ -1,0 +1,10 @@
+{
+    "bangkok": [
+        { "value": "phra-nakhon", "text": "เขตพระนคร" },
+        { "value": "dusit", "text": "เขตดุสิต" }
+    ],
+    "samut-prakan": [
+        { "value": "mueang-samut-prakan", "text": "อำเภอเมืองสมุทรปราการ" },
+        { "value": "bang-bo", "text": "อำเภอบางบ่อ" }
+    ]
+}
