@@ -36,50 +36,6 @@ session_start();
         </div>
 
 
-        <script>
-            $(document).ready(function() {
-                $("#multiStepForm").validate({
-                    errorClass: "state-error",
-                    validClass: "state-success",
-                    errorElement: "em",
-
-                    rules: {
-                        firstname: {
-                            required: true
-                        },
-                        lastname: {
-                            required: true
-                        }
-                    },
-
-                    messages: {
-                        firstname: {
-                            required: "Enter first name"
-                        },
-                        lastname: {
-                            required: "Enter last name"
-                        }
-                    },
-
-                    highlight: function(element, errorClass, validClass) {
-                        $(element).addClass(errorClass).removeClass(validClass);
-                    },
-                    unhighlight: function(element, errorClass, validClass) {
-                        $(element).removeClass(errorClass).addClass(validClass);
-                    },
-                    errorPlacement: function(error, element) {
-                        error.insertAfter(element);
-                    },
-
-                    submitHandler: function(form) {
-                        alert("Form submitted successfully!");
-                        form.submit();
-                    }
-                });
-            });
-        </script>
-<button type="submit">Submit</button>
-
         <div class="form-group row">
             <div class="col-sm-2 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">คำนำหน้า(ENG.)<font style="color:crimson;">*</font></label>
