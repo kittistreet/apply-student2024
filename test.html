@@ -1,47 +1,65 @@
-<!-- step-1 -->
-<li class="nav-item ">
-    <a class="nav-link" href="#">
-        <i class="fas fa-fw fa-folder"></i>
-        <span>Accept PDPA</span></a>
-</li>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.19.3/jquery.validate.min.js"></script>
+    <style>
+        .state-error { border: 2px solid red; }
+        .state-success { border: 2px solid green; }
+        em { color: red; font-size: 14px; }
+    </style>
+</head>
+<body>
 
-<!-- Divider -->
-<hr class="sidebar-divider">
+    <form id="allcp-form">
+        <div class="field">
+            <label for="firstname">First Name:</label>
+            <input type="text" name="firstname" id="firstname">
+        </div>
+        <div class="field">
+            <label for="lastname">Last Name:</label>
+            <input type="text" name="lastname" id="lastname">
+        </div>
+        <button type="submit">Submit</button>
+    </form>
 
-<!-- Heading -->
-<div class="sidebar-heading">
-    from information
-</div>
-<!-- step-2 -->
-<li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" aria-expanded="true" aria-controls="collapsePages">
-        <i class="fas fa-fw fa-folder"></i>
-        <span>Education</span>
-    </a>
+    <script>
+        $(document).ready(function () {
+            $("#allcp-form").validate({
+                errorClass: "state-error",
+                validClass: "state-success",
+                errorElement: "em",
 
-</li>
-<!-- step-3 -->
-<li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fas fa-fw fa-folder"></i>
-        <span>Personal</span>
-    </a>
+                rules: {
+                    firstname: { required: true },
+                    lastname: { required: true }
+                },
 
-</li>
+                messages: {
+                    firstname: { required: "Enter first name" },
+                    lastname: { required: "Enter last name" }
+                },
 
-<div class="container">
-    <div id="step-1" >
-        <?php include 'stepPDPA.php'; ?>
-    </div>
+                highlight: function (element, errorClass, validClass) {
+                    $(element).addClass(errorClass).removeClass(validClass);
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).removeClass(errorClass).addClass(validClass);
+                },
+                errorPlacement: function (error, element) {
+                    error.insertAfter(element);
+                },
 
+                submitHandler: function (form) {
+                    alert("Form submitted successfully!");
+                    form.submit();
+                }
+            });
+        });
+    </script>
 
-    <div id="step-2" class="hidden">
-        <?php include 'step2.php'; ?>
-    </div>
-
-
-    <div id="step-3" class="hidden">
-        <?php include 'step3.php'; ?>
-    </div>
-
-</div>
+</body>
+</html>

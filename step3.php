@@ -1,5 +1,5 @@
-<?php 
-session_start(); 
+<?php
+session_start();
 ?>
 <div class="card shadow mb-4">
     <div class="card-header py-3">
@@ -27,14 +27,58 @@ session_start();
             </div>
             <div class="col-sm-5 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">ชื่อ<font style="color:crimson;">*</font></label>
-                <input type="text" class="form-control form-control-user" id="gradYear_${recordCount}" placeholder="ระบุชื่อ...">
+                <input type="text" class="form-control form-control-user" id="firstname" name="firstname" placeholder="ระบุชื่อ...">
             </div>
             <div class="col-sm-5 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">สกุล<font style="color:crimson;">*</font></label>
-                <input type="text" class="form-control form-control-user" id="gradYear_${recordCount}" placeholder="ระบุนามสกุล...">
+                <input type="text" class="form-control form-control-user" id="lastname" name="lastname" placeholder="ระบุนามสกุล...">
             </div>
         </div>
 
+
+        <script>
+            $(document).ready(function() {
+                $("#multiStepForm").validate({
+                    errorClass: "state-error",
+                    validClass: "state-success",
+                    errorElement: "em",
+
+                    rules: {
+                        firstname: {
+                            required: true
+                        },
+                        lastname: {
+                            required: true
+                        }
+                    },
+
+                    messages: {
+                        firstname: {
+                            required: "Enter first name"
+                        },
+                        lastname: {
+                            required: "Enter last name"
+                        }
+                    },
+
+                    highlight: function(element, errorClass, validClass) {
+                        $(element).addClass(errorClass).removeClass(validClass);
+                    },
+                    unhighlight: function(element, errorClass, validClass) {
+                        $(element).removeClass(errorClass).addClass(validClass);
+                    },
+                    errorPlacement: function(error, element) {
+                        error.insertAfter(element);
+                    },
+
+                    submitHandler: function(form) {
+                        alert("Form submitted successfully!");
+                        form.submit();
+                    }
+                });
+            });
+        </script>
+<button type="submit">Submit</button>
 
         <div class="form-group row">
             <div class="col-sm-2 mb-3 mb-sm-0">
@@ -1209,10 +1253,10 @@ session_start();
             </div> -->
 
         </div>
-        
+
 
         <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
-        <button type="submit" class="btn btn-primary btn-user btn-block" id="send" >Submit</button>
+        <button type="submit" class="btn btn-primary btn-user btn-block" id="send">Submit</button>
         <button type="button" class="btn btn-warning btn-user btn-block" id="prev-3">BACK</button>
 
         <script>

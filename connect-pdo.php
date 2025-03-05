@@ -7,6 +7,6 @@ try {
 }
 
 // Google reCAPTCHA Configuration
-$recaptcha_secret = '6Lf4JuMqAAAAAN2pidvT48pxyGKRocR66Cfrw9M_';
+// $recaptcha_secret = '6Lf4JuMqAAAAAN2pidvT48pxyGKRocR66Cfrw9M_';
 
 

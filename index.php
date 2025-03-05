@@ -41,7 +41,12 @@ if (empty($_SESSION['csrf_token'])) {
     <link href="plugin/bootstrap-datepicker-thai-thai/css/datepicker.css" rel="stylesheet" media="screen">
 
 
-
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.19.3/jquery.validate.min.js"></script>
+    <style>
+        .state-error { border: 2px solid red; }
+        .state-success { border: 2px solid green; }
+        em { color: red; font-size: 14px; }
+    </style>
 
 
     <style>
@@ -92,7 +97,7 @@ if (empty($_SESSION['csrf_token'])) {
                                     </div>
 
 
-                                    <div id="step-3" class="hidden">
+                                    <div id="step-3">
                                         <?php include 'step3.php'; ?>
                                     </div>
 
