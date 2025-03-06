@@ -17,7 +17,7 @@ session_start();
         <div class="form-group row">
             <div class="col-sm-2 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">คำนำหน้า<font style="color:crimson;">*</font></label>
-                <select class="form-control" id="Title" name="Title" data-required="true">
+                <select class="form-control" id="Title" name="Title">
                     <option>-โปรดระบุ-</option>
                     <option value="1">นาย</option>
                     <option value="2">นาง</option>
@@ -26,11 +26,11 @@ session_start();
             </div>
             <div class="col-sm-5 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">ชื่อ<font style="color:crimson;">*</font></label>
-                <input type="text" class="form-control form-control-user" id="firstname" name="firstname" placeholder="ระบุชื่อ..." data-required="true">
+                <input type="text" class="form-control form-control-user" id="firstname" name="firstname" placeholder="ระบุชื่อ...">
             </div>
             <div class="col-sm-5 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">สกุล<font style="color:crimson;">*</font></label>
-                <input type="text" class="form-control form-control-user" id="lastname" name="lastname" placeholder="ระบุนามสกุล..." data-required="true">
+                <input type="text" class="form-control form-control-user" id="lastname" name="lastname" placeholder="ระบุนามสกุล...">
             </div>
         </div>
 
@@ -73,7 +73,7 @@ session_start();
 
             <div class="col-sm-3 mb-3 mb-sm-0">
                 <label for="month" class="form-label"> <br> </label>
-                <select class="form-control" id="month" onchange="updateDays()" disabled data-required="true">
+                <select class="form-control" id="month" onchange="updateDays()" disabled>
                     <option value="" selected>-เดือนเกิด-</option>
                     <option value="1">มกราคม</option>
                     <option value="2">กุมภาพันธ์</option>
@@ -269,12 +269,12 @@ session_start();
         <div class="form-group row">
             <div class="col-sm-8 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">บ้านเลขที่, ซอย, หมู่, ถนน<font style="color:crimson;">*</font></label>
-                <input type="text" class="form-control form-control-user" name="Address1" placeholder="ระบุบ้านเลขที่, ซอย, หมู่, ถนน... ">
+                <input type="text" class="form-control form-control-user" name="Address1" placeholder="ระบุบ้านเลขที่, ซอย, หมู่, ถนน... " data-required="true">
             </div>
 
             <div class="col-sm-4 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">จังหวัด<font style="color:crimson;">*</font></label>
-                <select class="form-control" id="province_7" name="province_1">
+                <select class="form-control" id="province_7" name="province_1" data-required="true">
                     <option value="">-โปรดเลือกจังหวัด-</option>
                 </select>
             </div>
@@ -284,21 +284,21 @@ session_start();
         <div class="form-group row">
             <div class="col-sm-4 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">เขต/อำเภอ<font style="color:crimson;">*</font></label>
-                <select class="form-control" id="District_1" name="District_1">
+                <select class="form-control" id="District_1" name="District_1" data-required="true">
                     <option value="">-โปรดเลือก เขต/อำเภอ-</option>
                 </select>
             </div>
 
             <div class="col-sm-4 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">แขวง/ตำบล<font style="color:crimson;">*</font></label>
-                <select class="form-control" id="Sub_District_1" name="Sub_District_1">
+                <select class="form-control" id="Sub_District_1" name="Sub_District_1" data-required="true">
                     <option value="">-โปรดเลือก แขวง/ตำบล-</option>
                 </select>
             </div>
 
             <div class="col-sm-4 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">รหัสไปรษณีย์<font style="color:crimson;">*</font></label>
-                <input type="text" class="form-control form-control-user" id="zipcode_1" name="zipcode_1" placeholder="ระบุรหัสไปรษณีย์...">
+                <input type="text" class="form-control form-control-user" id="zipcode_1" name="zipcode_1" placeholder="ระบุรหัสไปรษณีย์..." data-required="true">
             </div>
         </div>
 
@@ -309,17 +309,17 @@ session_start();
         <div class="form-group row">
             <div class="col-sm-4 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">โทรศัพท์(มือถือ)<font style="color:crimson;">*</font></label>
-                <input type="text" class="form-control form-control-user" name="Phone_1" placeholder="ระบุเบอร์โทรศัพท์...">
+                <input type="text" class="form-control form-control-user" name="Phone_1" placeholder="ระบุเบอร์โทรศัพท์..." data-required="true">
             </div>
 
             <div class="col-sm-4 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">ID Line</label>
-                <input type="text" class="form-control form-control-user" name="IDLine" placeholder="ระบุไอดีไลน์...">
+                <input type="text" class="form-control form-control-user" name="IDLine" placeholder="ระบุไอดีไลน์..." data-required="true">
             </div>
 
             <div class="col-sm-4 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">อีเมล<font style="color:crimson;">*</font></label>
-                <input type="text" class="form-control form-control-user" name="Email_1" placeholder="ระบุอีเมล...">
+                <input type="text" class="form-control form-control-user" name="Email_1" placeholder="ระบุอีเมล..." data-required="true">
             </div>
         </div>
 
