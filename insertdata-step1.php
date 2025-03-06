@@ -130,6 +130,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // บันทึกลง log
     file_put_contents('logs.txt', date("Y-m-d H:i:s") . " - Application submitted: $applicationId\n", FILE_APPEND);
+
+echo "Record inserted successfully with ID: $applicationId";
 }
 
 
@@ -157,4 +159,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 
-echo "Record inserted successfully with ID: $applicationId";
+
