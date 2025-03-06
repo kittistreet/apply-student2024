@@ -8,7 +8,6 @@ session_start();
     <div class="card-body">
 
 
-
         <div class="card mb-4 py-3 border-bottom-primary form-group row form-group row">
             <div class="col-sm-12 mb-3 mb-sm-0">
                 <h5><i class="fas fa-flag"></i> ส่วนที่ 1 ข้อมูลประวัติส่วนตัว</h5>
@@ -55,19 +54,6 @@ session_start();
                 <input type="text" class="form-control form-control-user" id="gradYear_${recordCount}" placeholder="ระบุนามสกุล Eng...">
             </div>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         <div class="form-group row">
