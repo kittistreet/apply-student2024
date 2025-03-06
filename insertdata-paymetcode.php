@@ -49,6 +49,8 @@ file_put_contents($orm_img_qr_code, $qrcode);
 
 
 
+
+
 // รหัสผู้สมัครและวันที่สมัคร
 $applicationDate = date("Y-m-d"); // วันที่ปัจจุบัน
 
