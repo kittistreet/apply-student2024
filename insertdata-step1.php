@@ -6,6 +6,8 @@ use chillerlan\QRCode\QRCode;
 use chillerlan\QRCode\QROptions;
 
 
+// // echo date('Y-m-d H:i:s')."<br>";
+// echo "now your system default time zone is : ". date_default_timezone_get() ."<br>";
 
 session_start();
 // ตรวจสอบ CSRF Token
@@ -14,7 +16,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die("Invalid CSRF token");
     }
 
+    // ตรวจสอบ Google reCAPTCHA
+    // $recaptcha_secret = "YOUR_SECRET_KEY"; // เปลี่ยนเป็น Secret Key ของคุณ
+    // $recaptcha_response = $_POST['g-recaptcha-response'] ?? '';
 
+
+    // if (!$recaptcha_response) {
+    //     die("Please complete the reCAPTCHA verification.");
+    // }
+
+
+    // // ตรวจสอบกับ Google
+    // $verify_url = "https://www.google.com/recaptcha/api/siteverify?secret=$recaptcha_secret&response=$recaptcha_response";
+    // $response = file_get_contents($verify_url);
+    // $response_data = json_decode($response, true);
+
+
+    // if (!$response_data['success']) {
+    //     die("reCAPTCHA verification failed. Please try again.");
+    // }
 
     // ฟังก์ชันสำหรับทำความสะอาดข้อมูล (ป้องกัน XSS)
     function sanitize_input($data)
@@ -23,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
 
-    
+
 
     // สร้างรหัสการสมัคร
     $year = date("y");
@@ -34,7 +54,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $second = date("s");
     $applicationId = "$year$month$day$hour$minute$second";
     $applicationDate = date("Y-m-d");
-
 
 
 
@@ -122,39 +141,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die("Error inserting into application_ads1: " . $e->getMessage());
     }
 
-
-
-
-
-
-
     // บันทึกลง log
     file_put_contents('logs.txt', date("Y-m-d H:i:s") . " - Application submitted: $applicationId\n", FILE_APPEND);
+
+    // echo "Record inserted successfully with ID: $applicationId";
+
+
 }
-
-
-
-// ตรวจสอบ Google reCAPTCHA
-// $recaptcha_secret = "YOUR_SECRET_KEY"; // เปลี่ยนเป็น Secret Key ของคุณ
-// $recaptcha_response = $_POST['g-recaptcha-response'] ?? '';
-
-
-// if (!$recaptcha_response) {
-//     die("Please complete the reCAPTCHA verification.");
-// }
-
-
-// // ตรวจสอบกับ Google
-// $verify_url = "https://www.google.com/recaptcha/api/siteverify?secret=$recaptcha_secret&response=$recaptcha_response";
-// $response = file_get_contents($verify_url);
-// $response_data = json_decode($response, true);
-
-
-// if (!$response_data['success']) {
-//     die("reCAPTCHA verification failed. Please try again.");
-// }
-
-
-
-
-echo "Record inserted successfully with ID: $applicationId";
