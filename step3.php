@@ -298,7 +298,7 @@ session_start();
 
             <div class="col-sm-4 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">รหัสไปรษณีย์<font style="color:crimson;">*</font></label>
-                <input type="text" class="form-control form-control-user" id="zipcode_1" name="zipcode_1" placeholder="ระบุรหัสไปรษณีย์..." data-required="true">
+                <input type="text" class="form-control form-control-user" id="zipcode_1" name="zipcode_1" placeholder="ระบุรหัสไปรษณีย์...">
             </div>
         </div>
 
