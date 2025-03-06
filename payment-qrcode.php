@@ -10,7 +10,7 @@ if (!isset($_SESSION['qrcode_image']) || !isset($_SESSION['expiry_date'])) {
 
 $qrcodeImage = $_SESSION['qrcode_image'];
 $expiryDate = $_SESSION['expiry_date'];
-$applicationId = $_SESSION['application_id'];
+$applicationId = $_SESSION['ApplicantID'];
 
 // แปลงเวลาให้เป็น timestamp สำหรับ JavaScript
 $expiryTimestamp = strtotime($expiryDate);
