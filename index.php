@@ -85,10 +85,10 @@ if (empty($_SESSION['csrf_token'])) {
 
                         <div class="col-lg-12 mb-4">
 
-                            <form action="insertdata-step1.php" name="myForm" method="post" id="multiStepForm" enctype="multipart/form-data">
+                            <form action="insertdata-step1.php" name="myForm" method="post" id="multiStepForm" enctype="multipart/form-data" novalidate>
 
                                 <div class="container">
-                                    <div id="step-1">
+                                    <div id="step-1" class="hidden">
                                         <?php include 'stepPDPA.php'; ?>
                                     </div>
 
@@ -98,7 +98,7 @@ if (empty($_SESSION['csrf_token'])) {
                                     </div>
 
 
-                                    <div id="step-3" class="hidden">
+                                    <div id="step-3">
                                         <?php include 'step3.php'; ?>
                                     </div>
 
@@ -260,14 +260,10 @@ if (empty($_SESSION['csrf_token'])) {
     <script src="//getbootstrap.com/2.3.2/assets/js/jquery.js"></script>
 
 
-
-
     <!-- datepicker -->
     <script src="plugin/bootstrap-datepicker-thai-thai/js/bootstrap-datepicker.js"></script>
     <script src="plugin/bootstrap-datepicker-thai-thai/js/bootstrap-datepicker-thai.js"></script>
     <script src="plugin/bootstrap-datepicker-thai-thai/js/locales/bootstrap-datepicker.th.js"></script>
-
-
 
 
 
