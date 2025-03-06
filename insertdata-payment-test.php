@@ -1,47 +1,42 @@
 <?php
 session_start();
-// Set the timezone to Thailand (Asia/Bangkok)
-date_default_timezone_set('Asia/Bangkok');
-
-
-
+require 'connect-pdo.php'; // เชื่อมต่อฐานข้อมูล
 require 'payment/vendor/autoload.php';
 
 use chillerlan\QRCode\QRCode;
 use chillerlan\QRCode\QROptions;
 
-// กำหนดจำนวนเงินแบบคงที่
+// กำหนดจำนวนเงินคงที่
 define('FIXED_AMOUNT', "400.00");
 
-// สร้างรหัสการสมัคร
-$year = date("y"); // 2 หลักสุดท้ายของปี
-$month = date("m"); // เดือน
-$day = date("d"); // วันที่
-$hour = date("H"); // ชั่วโมง
-$minute = date("i"); // นาที
-$second = date("s"); // วินาที
-$applicationId = "$year$month$day$hour$minute$second"; // เพิ่มวินาที
+// สร้างรหัสผู้สมัคร
+$year = date("y"); 
+$month = date("m");
+$day = date("d");
+$hour = date("H");
+$minute = date("i");
+$second = date("s");
+$ApplicantID = "$year$month$day$hour$minute$second";
 
-// สร้าง Timestamp สำหรับหมดอายุ (20 วินาที)
-$expiryTimestamp = strtotime("+20 seconds");
-// $expiryTimestamp = strtotime("+3 days");
+// กำหนดเวลาหมดอายุ (3 วัน)
+$expiryTimestamp = strtotime("+3 days");
+$expiryDateTime = date("Y-m-d H:i:s", $expiryTimestamp);
 
-
-// ข้อมูลสำหรับสร้าง QR CODE
+// สร้าง QR Code ข้อมูล
 $billerID = "|099400018814500";
-$referenceNumber1 = $applicationId;
+$referenceNumber1 = $ApplicantID;
 $referenceNumber2 = "25680001";
 $orm_price_total_arr = explode(".", number_format(FIXED_AMOUNT, 2));
 $amount = "$orm_price_total_arr[0]" . "$orm_price_total_arr[1]";
 
-// รวมข้อมูลทั้งหมดที่ต้องการเข้ารหัส
+// ข้อมูล QR Code
 $paymentData = sprintf(
     "%s\n%s\n%s\n%s\n%s",
     $billerID,
     $referenceNumber1,
     $referenceNumber2,
     $amount,
-    $expiryTimestamp // เพิ่ม Timestamp หมดอายุ
+    $expiryTimestamp
 );
 
 $options = new QROptions([
@@ -52,20 +47,24 @@ $options = new QROptions([
 
 $qrcode = (new QRCode($options))->render($paymentData);
 
-// สร้างโฟลเดอร์ถ้ายังไม่มี
+// บันทึกไฟล์ QR Code
 if (!is_dir("upload/")) {
     mkdir("upload/");
 }
+$qrcodePath = "upload/$ApplicantID.png";
+file_put_contents($qrcodePath, $qrcode);
 
-// บันทึกรูป QR Code
-$orm_img_qr_code = "upload/$applicationId.png";
-file_put_contents($orm_img_qr_code, $qrcode);
+// บันทึกข้อมูลลงฐานข้อมูล
+$query = "INSERT INTO application_payments (ApplicantID, amount, qr_code, expiry_time, status) VALUES (?, ?, ?, ?, 'pending')";
+$stmt = $conn->prepare($query);
+$stmt->execute([$ApplicantID, FIXED_AMOUNT, $qrcodePath, $expiryDateTime]);
 
-// บันทึกข้อมูลลง SESSION เพื่อนำไปแสดงในหน้าถัดไป
-$_SESSION['qrcode_image'] = $orm_img_qr_code;
-$_SESSION['expiry_date'] = date("Y-m-d H:i:s", $expiryTimestamp);
-$_SESSION['application_id'] = $applicationId;
+// บันทึกค่าใน SESSION
+$_SESSION['qrcode_image'] = $qrcodePath;
+$_SESSION['expiry_date'] = $expiryDateTime;
+$_SESSION['ApplicantID'] = $ApplicantID;
 
-// Redirect ไปหน้าแสดง QR Code
+// Redirect ไปยังหน้าแสดง QR Code
 header("Location: payment-qrcode.php");
 exit();
+?>
