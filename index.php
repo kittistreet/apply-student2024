@@ -97,7 +97,7 @@ if (empty($_SESSION['csrf_token'])) {
                             <form action="insertdata-step1.php" name="myForm" method="post" id="multiStepForm" enctype="multipart/form-data" novalidate>
 
                                 <div class="container">
-                                    <div id="step-1" class="hidden">
+                                    <div id="step-1">
                                         <?php include 'stepPDPA.php'; ?>
                                     </div>
 
@@ -107,7 +107,7 @@ if (empty($_SESSION['csrf_token'])) {
                                     </div>
 
 
-                                    <div id="step-3">
+                                    <div id="step-3" class="hidden">
                                         <?php include 'step3.php'; ?>
                                     </div>
 
@@ -123,6 +123,42 @@ if (empty($_SESSION['csrf_token'])) {
                                             document.querySelector("#insertdata .modal-body").innerHTML = message;
                                             $("#insertdata").modal("show"); // ใช้ Bootstrap Modal
                                         }
+
+
+                                        // ปุ่ม Next 1 -> 2
+                                        document.getElementById("next-1").addEventListener("click", function() {
+                                            document.getElementById("nav-step-1").classList.remove("active");
+                                            document.getElementById("nav-step-2").classList.add("active");
+                                            document.getElementById("step-1").classList.add("hidden");
+                                            document.getElementById("step-2").classList.remove("hidden");
+                                        });
+
+                                        // ปุ่ม Next 2 -> 3
+                                        document.getElementById("next-2").addEventListener("click", function() {
+                                            document.getElementById("nav-step-2").classList.remove("active");
+                                            document.getElementById("nav-step-3").classList.add("active");
+                                            document.getElementById("step-2").classList.add("hidden");
+                                            document.getElementById("step-3").classList.remove("hidden");
+                                        });
+
+                                        // ปุ่ม Previous 2 -> 1
+                                        document.getElementById("prev-2").addEventListener("click", function() {
+                                            document.getElementById("nav-step-2").classList.remove("active");
+                                            document.getElementById("nav-step-1").classList.add("active");
+                                            document.getElementById("step-2").classList.add("hidden");
+                                            document.getElementById("step-1").classList.remove("hidden");
+                                        });
+
+                                        // ปุ่ม Previous 3 -> 2
+                                        document.getElementById("prev-3").addEventListener("click", function() {
+                                            document.getElementById("nav-step-3").classList.remove("active");
+                                            document.getElementById("nav-step-2").classList.add("active");
+                                            document.getElementById("step-3").classList.add("hidden");
+                                            document.getElementById("step-2").classList.remove("hidden");
+                                        });
+
+
+
 
                                         // ฟังก์ชันตรวจสอบค่าว่างเฉพาะฟิลด์ที่ต้องการ
                                         function validateForm() {
@@ -180,6 +216,26 @@ if (empty($_SESSION['csrf_token'])) {
                                             }
                                         });
                                     });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    
                                 </script>
 
 
