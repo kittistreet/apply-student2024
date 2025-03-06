@@ -88,7 +88,7 @@ if (empty($_SESSION['csrf_token'])) {
                             <form action="insertdata-step1.php" name="myForm" method="post" id="multiStepForm" enctype="multipart/form-data">
 
                                 <div class="container">
-                                    <div id="step-1">
+                                    <div id="step-1" class="hidden">
                                         <?php include 'stepPDPA.php'; ?>
                                     </div>
 
@@ -98,7 +98,7 @@ if (empty($_SESSION['csrf_token'])) {
                                     </div>
 
 
-                                    <div id="step-3" class="hidden">
+                                    <div id="step-3">
                                         <?php include 'step3.php'; ?>
                                     </div>
 
