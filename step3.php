@@ -17,7 +17,7 @@ session_start();
         <div class="form-group row">
             <div class="col-sm-2 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">คำนำหน้า<font style="color:crimson;">*</font></label>
-                <select class="form-control" id="Title" name="Title">
+                <select class="form-control" id="Title" name="Title" data-required="true">
                     <option>-โปรดระบุ-</option>
                     <option value="1">นาย</option>
                     <option value="2">นาง</option>
@@ -26,11 +26,11 @@ session_start();
             </div>
             <div class="col-sm-5 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">ชื่อ<font style="color:crimson;">*</font></label>
-                <input type="text" class="form-control form-control-user" id="firstname" name="firstname" placeholder="ระบุชื่อ...">
+                <input type="text" class="form-control form-control-user" id="firstname" name="firstname" placeholder="ระบุชื่อ..." data-required="true">
             </div>
             <div class="col-sm-5 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">สกุล<font style="color:crimson;">*</font></label>
-                <input type="text" class="form-control form-control-user" id="lastname" name="lastname" placeholder="ระบุนามสกุล...">
+                <input type="text" class="form-control form-control-user" id="lastname" name="lastname" placeholder="ระบุนามสกุล..." data-required="true">
             </div>
         </div>
 
@@ -60,7 +60,7 @@ session_start();
 
             <div class="col-sm-2 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">ปี/เดือน/วันเกิด<font style="color:crimson;">*</font></label>
-                <select class="form-control" id="year" onchange="updateMonthAndDay()">
+                <select class="form-control" id="year" onchange="updateMonthAndDay()" data-required="true">
                     <option value="" selected>-ปีเกิด-</option>
                     <script>
                         let currentYear = new Date().getFullYear() + 543; // แปลงเป็น พ.ศ.
@@ -73,7 +73,7 @@ session_start();
 
             <div class="col-sm-3 mb-3 mb-sm-0">
                 <label for="month" class="form-label"> <br> </label>
-                <select class="form-control" id="month" onchange="updateDays()" disabled>
+                <select class="form-control" id="month" onchange="updateDays()" disabled data-required="true">
                     <option value="" selected>-เดือนเกิด-</option>
                     <option value="1">มกราคม</option>
                     <option value="2">กุมภาพันธ์</option>
@@ -506,7 +506,7 @@ session_start();
                         newRow.innerHTML = `
             <div class="col-sm-3 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">ระดับการศึกษา</label>
-                <input type="text" class="form-control form-control-user" id="education_L_${recordCount}" placeholder="ระบุระดับการศึกษาเพิ่มเติม">
+                <input type="text" class="form-control form-control-user" id="education_L_${recordCount} " placeholder="ระบุระดับการศึกษาเพิ่มเติม" data-required="true">
             </div>
             <div class="col-sm-3 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">ชื่อสถานศึกษา</label>
@@ -723,7 +723,7 @@ session_start();
             <div class="form-group row">
                 <div class="col-sm-8 mb-3 mb-sm-0">
                     <label style="font-weight: bold;">บ้านเลขที่, ซอย, หมู่, ถนน<font style="color:crimson;">*</font></label>
-                    <input type="text" class="form-control form-control-user" placeholder="ระบุบ้านเลขที่, ซอย, หมู่, ถนน... " disabled>
+                    <input type="text" class="form-control form-control-user" placeholder="ระบุบ้านเลขที่, ซอย, หมู่, ถนน... " disabled data-required="true">
                 </div>
 
                 <div class="col-sm-4 mb-3 mb-sm-0">
