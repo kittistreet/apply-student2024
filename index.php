@@ -3,6 +3,7 @@ require 'connect-pdo.php';
 session_start();
 if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+    echo $_SESSION['csrf_token'];
 }
 
 ?>
@@ -97,7 +98,7 @@ if (empty($_SESSION['csrf_token'])) {
                                     </div>
 
 
-                                    <div id="step-3">
+                                    <div id="step-3" class="hidden">
                                         <?php include 'step3.php'; ?>
                                     </div>
 
