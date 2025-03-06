@@ -11,10 +11,7 @@ $ApplicantID = $data['ApplicantID'] ?? '';
 $amountPaid = $data['amount'] ?? 0;
 $paymentStatus = $data['status'] ?? '';
 
-// ทดสอบส่งค่ามา
-// $ApplicantID = $_POST['ApplicantID'] ?? '';
-// $amountPaid = $_POST['amount'] ?? 0;
-// $paymentStatus = $_POST['status'] ?? '';
+
 
 if (!$ApplicantID || !$amountPaid || !$paymentStatus) {
     http_response_code(400);
