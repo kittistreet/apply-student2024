@@ -22,8 +22,10 @@ $minute = date("i"); // นาที
 $second = date("s"); // วินาที
 $applicationId = "$year$month$day$hour$minute$second"; // เพิ่มวินาที
 
-// สร้าง Timestamp สำหรับหมดอายุ (3 วันจากนี้)
-$expiryTimestamp = strtotime("+3 days");
+// สร้าง Timestamp สำหรับหมดอายุ (20 วินาที)
+$expiryTimestamp = strtotime("+20 seconds");
+// $expiryTimestamp = strtotime("+3 days");
+
 
 // ข้อมูลสำหรับสร้าง QR CODE
 $billerID = "|099400018814500";
