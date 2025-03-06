@@ -6,7 +6,7 @@ date_default_timezone_set('Asia/Bangkok');
 $db_host = "localhost";
 $db_name = "db_applyonline2025";
 $db_user = "root";
-$db_pass = "12345678";
+$db_pass = "root";
 
 try {
   $conn = new PDO("mysql:host=$db_host;dbname=$db_name;charset=utf8mb4", $db_user, $db_pass); // Added charset=utf8mb4
