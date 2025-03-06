@@ -44,9 +44,18 @@ if (empty($_SESSION['csrf_token'])) {
 
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.19.3/jquery.validate.min.js"></script>
     <style>
-        .state-error { border: 2px solid red; }
-        .state-success { border: 2px solid green; }
-        em { color: red; font-size: 14px; }
+        .state-error {
+            border: 2px solid red;
+        }
+
+        .state-success {
+            border: 2px solid green;
+        }
+
+        em {
+            color: red;
+            font-size: 14px;
+        }
     </style>
 
 
@@ -105,7 +114,7 @@ if (empty($_SESSION['csrf_token'])) {
                                 </div>
 
 
-                                
+
 
                                 <script>
                                     document.addEventListener("DOMContentLoaded", function() {
@@ -115,41 +124,41 @@ if (empty($_SESSION['csrf_token'])) {
                                             $("#insertdata").modal("show"); // ใช้ Bootstrap Modal
                                         }
 
-                                        // ปุ่ม Next 1 -> 2
-                                        document.getElementById("next-1").addEventListener("click", function() {
-                                            document.getElementById("nav-step-1").classList.remove("active");
-                                            document.getElementById("nav-step-2").classList.add("active");
-                                            document.getElementById("step-1").classList.add("hidden");
-                                            document.getElementById("step-2").classList.remove("hidden");
+                                        // ฟังก์ชันตรวจสอบค่าว่างเฉพาะฟิลด์ที่ต้องการ
+                                        function validateForm() {
+                                            let isValid = true;
+                                            let requiredFields = document.querySelectorAll("#multiStepForm [data-required='true']:not([disabled]):not([hidden])");
+
+                                            requiredFields.forEach(field => {
+                                                if (!field.value.trim()) {
+                                                    isValid = false;
+                                                    field.classList.add("is-invalid"); // เพิ่ม class แสดงข้อผิดพลาด (ใช้ Bootstrap)
+                                                } else {
+                                                    field.classList.remove("is-invalid");
+                                                }
+                                            });
+
+                                            return isValid;
+                                        }
+
+                                        // ลบ class is-invalid ทันทีที่พิมพ์ข้อมูล
+                                        document.querySelectorAll("#multiStepForm [data-required='true']:not([disabled]):not([hidden])").forEach(field => {
+                                            field.addEventListener("input", function() {
+                                                if (field.value.trim()) {
+                                                    field.classList.remove("is-invalid");
+                                                }
+                                            });
                                         });
 
-                                        // ปุ่ม Next 2 -> 3
-                                        document.getElementById("next-2").addEventListener("click", function() {
-                                            document.getElementById("nav-step-2").classList.remove("active");
-                                            document.getElementById("nav-step-3").classList.add("active");
-                                            document.getElementById("step-2").classList.add("hidden");
-                                            document.getElementById("step-3").classList.remove("hidden");
-                                        });
-
-                                        // ปุ่ม Previous 2 -> 1
-                                        document.getElementById("prev-2").addEventListener("click", function() {
-                                            document.getElementById("nav-step-2").classList.remove("active");
-                                            document.getElementById("nav-step-1").classList.add("active");
-                                            document.getElementById("step-2").classList.add("hidden");
-                                            document.getElementById("step-1").classList.remove("hidden");
-                                        });
-
-                                        // ปุ่ม Previous 3 -> 2
-                                        document.getElementById("prev-3").addEventListener("click", function() {
-                                            document.getElementById("nav-step-3").classList.remove("active");
-                                            document.getElementById("nav-step-2").classList.add("active");
-                                            document.getElementById("step-3").classList.add("hidden");
-                                            document.getElementById("step-2").classList.remove("hidden");
-                                        });
-
-                                        // ปุ่ม Submit (ให้ทำงานเฉพาะตอนกด Submit เท่านั้น)
+                                        // ปุ่ม Submit
                                         document.getElementById("multiStepForm").addEventListener("submit", function(event) {
                                             event.preventDefault(); // ป้องกันการ submit อัตโนมัติ
+
+                                            // ตรวจสอบว่าฟอร์มครบถ้วนหรือไม่
+                                            if (!validateForm()) {
+                                                showModal("กรุณากรอกข้อมูลที่จำเป็นให้ครบถ้วน!");
+                                                return;
+                                            }
 
                                             // เช็คว่าอยู่ที่ step-3 เท่านั้น
                                             if (!document.getElementById("step-3").classList.contains("hidden")) {
