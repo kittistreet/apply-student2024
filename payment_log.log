@@ -1,3 +1,6 @@
 [2025-03-06 16:49:29] ✅ Payment successful for ApplicantID: 250306164904, Amount: 400
 [2025-03-06 16:54:49] 🔄 QR Code validated, status updated to processing for ApplicantID: 250306164950
 [2025-03-06 16:55:16] ✅ Payment successful for ApplicantID: 250306164950, Amount: 400
+[2025-03-10 16:27:25] ✅ Payment successful for ApplicantID: 250310162644, Amount: 400
+[2025-03-10 16:36:04] ⚠️ QR Code expired for ApplicantID: 250306164950
+[2025-03-10 16:36:46] ❌ Unauthorized access attempt
