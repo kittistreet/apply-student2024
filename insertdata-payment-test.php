@@ -1,43 +1,63 @@
 <?php
 session_start();
-require 'connect-pdo.php'; // เชื่อมต่อฐานข้อมูล
+date_default_timezone_set('Asia/Bangkok');
+
+require 'connect-pdo.php';
 require 'payment/vendor/autoload.php';
 
 use chillerlan\QRCode\QRCode;
 use chillerlan\QRCode\QROptions;
 
-// กำหนดจำนวนเงินคงที่
-define('FIXED_AMOUNT', "400.00");
+// กำหนดตัวแปร
+$seller_tax_id = "0994000188145"; // 13 หลัก
+$suffix = "00"; // 2 หลัก
+$referenceNumber1 = date("ymdHis"); // สูงสุด 20 หลัก
+$referenceNumber2 = "25680001"; // สูงสุด 20 หลัก
+$totalAmount = "40000"; // 400.00 บาท (ไม่มีจุดทศนิยม)
+$transactionType = "2";
+$dueDate = date('dmY', strtotime('+3 days'));
+$quantity = "1";
+$salesAmount = "37383"; // มูลค่าสินค้าไม่รวม VAT
+$vatRate = "0700"; // 7.00%
+$vatAmount = "2617"; // จำนวนเงิน VAT
+$sellerVatBranchID = "00000";
+$buyerTaxID = ""; // ไม่ระบุ
+$buyerVatBranchID = ""; // ไม่ระบุ
+$buyerName = ""; // ไม่ระบุ
+$referenceNumber3 = "";
+$proxyID = "";
+$proxyType = "";
+$netAmount = "40000";
+$typeOfIncome = "";
+$withholdingTaxRate = "";
+$withholdingTaxAmount = "";
+$withholdingTaxCondition = "";
 
-// สร้างรหัสผู้สมัคร
-$year = date("y"); 
-$month = date("m");
-$day = date("d");
-$hour = date("H");
-$minute = date("i");
-$second = date("s");
-$ApplicantID = "$year$month$day$hour$minute$second";
-
-// กำหนดเวลาหมดอายุ (3 วัน)
-$expiryTimestamp = strtotime("+3 days");
-$expiryDateTime = date("Y-m-d H:i:s", $expiryTimestamp);
-
-// สร้าง QR Code ข้อมูล
-$billerID = "|099400018814500";
-$referenceNumber1 = $ApplicantID;
-$referenceNumber2 = "25680001";
-$orm_price_total_arr = explode(".", number_format(FIXED_AMOUNT, 2));
-$amount = "$orm_price_total_arr[0]" . "$orm_price_total_arr[1]";
-
-// ข้อมูล QR Code
-$paymentData = sprintf(
-    "%s\n%s\n%s\n%s\n%s",
-    $billerID,
+// สร้างข้อมูล QR Code
+$paymentData = implode(chr(13), [
+    "|$seller_tax_id$suffix",
     $referenceNumber1,
     $referenceNumber2,
-    $amount,
-    $expiryTimestamp
-);
+    $totalAmount,
+    $transactionType,
+    $dueDate,
+    $quantity,
+    $salesAmount,
+    $vatRate,
+    $vatAmount,
+    $sellerVatBranchID,
+    $buyerTaxID,
+    $buyerVatBranchID,
+    $buyerName,
+    $referenceNumber3,
+    $proxyID,
+    $proxyType,
+    $netAmount,
+    $typeOfIncome,
+    $withholdingTaxRate,
+    $withholdingTaxAmount,
+    $withholdingTaxCondition
+]);
 
 $options = new QROptions([
     'eccLevel' => QRCode::ECC_L,
@@ -47,24 +67,24 @@ $options = new QROptions([
 
 $qrcode = (new QRCode($options))->render($paymentData);
 
-// บันทึกไฟล์ QR Code
+// บันทึก QR Code
+$qrcodePath = "upload/{$referenceNumber1}.png";
 if (!is_dir("upload/")) {
-    mkdir("upload/");
+    mkdir("upload/", 0755, true);
 }
-$qrcodePath = "upload/$ApplicantID.png";
 file_put_contents($qrcodePath, $qrcode);
 
 // บันทึกข้อมูลลงฐานข้อมูล
 $query = "INSERT INTO application_payments (ApplicantID, amount, qr_code, expiry_time, status) VALUES (?, ?, ?, ?, 'pending')";
 $stmt = $conn->prepare($query);
-$stmt->execute([$ApplicantID, FIXED_AMOUNT, $qrcodePath, $expiryDateTime]);
+$expiryDateTime = date("Y-m-d H:i:s", strtotime('+3 days'));
+$stmt->execute([$referenceNumber1, number_format($totalAmount / 100, 2, '.', ''), $qrcodePath, $expiryDateTime]);
 
-// บันทึกค่าใน SESSION
+// SESSION
 $_SESSION['qrcode_image'] = $qrcodePath;
 $_SESSION['expiry_date'] = $expiryDateTime;
-$_SESSION['ApplicantID'] = $ApplicantID;
+$_SESSION['ApplicantID'] = $referenceNumber1;
 
-// Redirect ไปยังหน้าแสดง QR Code
+// Redirect
 header("Location: payment-qrcode.php");
 exit();
-?>
