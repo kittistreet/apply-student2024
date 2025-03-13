@@ -8,7 +8,6 @@ session_start();
     <div class="card-body">
 
 
-
         <div class="card mb-4 py-3 border-bottom-primary form-group row form-group row">
             <div class="col-sm-12 mb-3 mb-sm-0">
                 <h5><i class="fas fa-flag"></i> ส่วนที่ 1 ข้อมูลประวัติส่วนตัว</h5>
@@ -57,24 +56,11 @@ session_start();
         </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
         <div class="form-group row">
 
             <div class="col-sm-2 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">ปี/เดือน/วันเกิด<font style="color:crimson;">*</font></label>
-                <select class="form-control" id="year" onchange="updateMonthAndDay()">
+                <select class="form-control" id="year" onchange="updateMonthAndDay()" data-required="true">
                     <option value="" selected>-ปีเกิด-</option>
                     <script>
                         let currentYear = new Date().getFullYear() + 543; // แปลงเป็น พ.ศ.
@@ -283,12 +269,12 @@ session_start();
         <div class="form-group row">
             <div class="col-sm-8 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">บ้านเลขที่, ซอย, หมู่, ถนน<font style="color:crimson;">*</font></label>
-                <input type="text" class="form-control form-control-user" name="Address1" placeholder="ระบุบ้านเลขที่, ซอย, หมู่, ถนน... ">
+                <input type="text" class="form-control form-control-user" name="Address1" placeholder="ระบุบ้านเลขที่, ซอย, หมู่, ถนน... " data-required="true">
             </div>
 
             <div class="col-sm-4 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">จังหวัด<font style="color:crimson;">*</font></label>
-                <select class="form-control" id="province_7" name="province_1">
+                <select class="form-control" id="province_7" name="province_1" data-required="true">
                     <option value="">-โปรดเลือกจังหวัด-</option>
                 </select>
             </div>
@@ -298,14 +284,14 @@ session_start();
         <div class="form-group row">
             <div class="col-sm-4 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">เขต/อำเภอ<font style="color:crimson;">*</font></label>
-                <select class="form-control" id="District_1" name="District_1">
+                <select class="form-control" id="District_1" name="District_1" data-required="true">
                     <option value="">-โปรดเลือก เขต/อำเภอ-</option>
                 </select>
             </div>
 
             <div class="col-sm-4 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">แขวง/ตำบล<font style="color:crimson;">*</font></label>
-                <select class="form-control" id="Sub_District_1" name="Sub_District_1">
+                <select class="form-control" id="Sub_District_1" name="Sub_District_1" data-required="true">
                     <option value="">-โปรดเลือก แขวง/ตำบล-</option>
                 </select>
             </div>
@@ -323,17 +309,17 @@ session_start();
         <div class="form-group row">
             <div class="col-sm-4 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">โทรศัพท์(มือถือ)<font style="color:crimson;">*</font></label>
-                <input type="text" class="form-control form-control-user" name="Phone_1" placeholder="ระบุเบอร์โทรศัพท์...">
+                <input type="text" class="form-control form-control-user" name="Phone_1" placeholder="ระบุเบอร์โทรศัพท์..." data-required="true">
             </div>
 
             <div class="col-sm-4 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">ID Line</label>
-                <input type="text" class="form-control form-control-user" name="IDLine" placeholder="ระบุไอดีไลน์...">
+                <input type="text" class="form-control form-control-user" name="IDLine" placeholder="ระบุไอดีไลน์..." data-required="true">
             </div>
 
             <div class="col-sm-4 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">อีเมล<font style="color:crimson;">*</font></label>
-                <input type="text" class="form-control form-control-user" name="Email_1" placeholder="ระบุอีเมล...">
+                <input type="text" class="form-control form-control-user" name="Email_1" placeholder="ระบุอีเมล..." data-required="true">
             </div>
         </div>
 
@@ -520,7 +506,7 @@ session_start();
                         newRow.innerHTML = `
             <div class="col-sm-3 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">ระดับการศึกษา</label>
-                <input type="text" class="form-control form-control-user" id="education_L_${recordCount}" placeholder="ระบุระดับการศึกษาเพิ่มเติม">
+                <input type="text" class="form-control form-control-user" id="education_L_${recordCount} " placeholder="ระบุระดับการศึกษาเพิ่มเติม" data-required="true">
             </div>
             <div class="col-sm-3 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">ชื่อสถานศึกษา</label>
@@ -737,7 +723,7 @@ session_start();
             <div class="form-group row">
                 <div class="col-sm-8 mb-3 mb-sm-0">
                     <label style="font-weight: bold;">บ้านเลขที่, ซอย, หมู่, ถนน<font style="color:crimson;">*</font></label>
-                    <input type="text" class="form-control form-control-user" placeholder="ระบุบ้านเลขที่, ซอย, หมู่, ถนน... " disabled>
+                    <input type="text" class="form-control form-control-user" placeholder="ระบุบ้านเลขที่, ซอย, หมู่, ถนน... " disabled data-required="true">
                 </div>
 
                 <div class="col-sm-4 mb-3 mb-sm-0">

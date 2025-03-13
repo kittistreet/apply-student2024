@@ -39,6 +39,13 @@
         </a>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" aria-expanded="false" aria-controls="collapseTwo">
+        <i class="fa fa-dollar-sign"></i>
+            <span>Payment</span>
+        </a>
+    </li>
+
     
     
 
