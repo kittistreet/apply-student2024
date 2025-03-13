@@ -23,10 +23,6 @@ $ApplicantID = "$year$month$day$hour$minute$second";
 $expiryTimestamp = strtotime("+20 second");
 $expiryDateTime = date("Y-m-d H:i:s", $expiryTimestamp);
 
-$TranType = '2';
-
-
-
 // สร้าง QR Code ข้อมูล
 $billerID = "|099400018814500";
 $referenceNumber1 = $ApplicantID;
@@ -36,16 +32,14 @@ $amount = "$orm_price_total_arr[0]" . "$orm_price_total_arr[1]";
 
 // ข้อมูล QR Code
 $paymentData = sprintf(
-    "%s\n%s\n%s\n%s\n%s\n%s\n%s",
+    "%s\n%s\n%s\n%s\n%s",
+    
     $billerID,
     $referenceNumber1,
     $referenceNumber2,
     $amount,
-    $TranType,
-    $expiryDateTime,
-    $duedate
+    $expiryTimestamp
 );
-
 
 $options = new QROptions([
     'eccLevel' => QRCode::ECC_L,
