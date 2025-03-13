@@ -44,9 +44,18 @@ if (empty($_SESSION['csrf_token'])) {
 
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.19.3/jquery.validate.min.js"></script>
     <style>
-        .state-error { border: 2px solid red; }
-        .state-success { border: 2px solid green; }
-        em { color: red; font-size: 14px; }
+        .state-error {
+            border: 2px solid red;
+        }
+
+        .state-success {
+            border: 2px solid green;
+        }
+
+        em {
+            color: red;
+            font-size: 14px;
+        }
     </style>
 
 
@@ -85,7 +94,7 @@ if (empty($_SESSION['csrf_token'])) {
 
                         <div class="col-lg-12 mb-4">
 
-                            <form action="insertdata-step1.php" name="myForm" method="post" id="multiStepForm" enctype="multipart/form-data">
+                            <form action="insertdata-step1.php" name="myForm" method="post" id="multiStepForm" enctype="multipart/form-data" novalidate>
 
                                 <div class="container">
                                     <div id="step-1" class="hidden">
@@ -105,7 +114,7 @@ if (empty($_SESSION['csrf_token'])) {
                                 </div>
 
 
-                                
+
 
                                 <script>
                                     document.addEventListener("DOMContentLoaded", function() {
@@ -114,6 +123,7 @@ if (empty($_SESSION['csrf_token'])) {
                                             document.querySelector("#insertdata .modal-body").innerHTML = message;
                                             $("#insertdata").modal("show"); // ใช้ Bootstrap Modal
                                         }
+
 
                                         // ปุ่ม Next 1 -> 2
                                         document.getElementById("next-1").addEventListener("click", function() {
@@ -147,9 +157,44 @@ if (empty($_SESSION['csrf_token'])) {
                                             document.getElementById("step-2").classList.remove("hidden");
                                         });
 
-                                        // ปุ่ม Submit (ให้ทำงานเฉพาะตอนกด Submit เท่านั้น)
+
+
+
+                                        // ฟังก์ชันตรวจสอบค่าว่างเฉพาะฟิลด์ที่ต้องการ
+                                        function validateForm() {
+                                            let isValid = true;
+                                            let requiredFields = document.querySelectorAll("#multiStepForm [data-required='true']:not([disabled]):not([hidden])");
+
+                                            requiredFields.forEach(field => {
+                                                if (!field.value.trim()) {
+                                                    isValid = false;
+                                                    field.classList.add("is-invalid"); // เพิ่ม class แสดงข้อผิดพลาด (ใช้ Bootstrap)
+                                                } else {
+                                                    field.classList.remove("is-invalid");
+                                                }
+                                            });
+
+                                            return isValid;
+                                        }
+
+                                        // ลบ class is-invalid ทันทีที่พิมพ์ข้อมูล
+                                        document.querySelectorAll("#multiStepForm [data-required='true']:not([disabled]):not([hidden])").forEach(field => {
+                                            field.addEventListener("input", function() {
+                                                if (field.value.trim()) {
+                                                    field.classList.remove("is-invalid");
+                                                }
+                                            });
+                                        });
+
+                                        // ปุ่ม Submit
                                         document.getElementById("multiStepForm").addEventListener("submit", function(event) {
                                             event.preventDefault(); // ป้องกันการ submit อัตโนมัติ
+
+                                            // ตรวจสอบว่าฟอร์มครบถ้วนหรือไม่
+                                            if (!validateForm()) {
+                                                showModal("กรุณากรอกข้อมูลที่จำเป็นให้ครบถ้วน!");
+                                                return;
+                                            }
 
                                             // เช็คว่าอยู่ที่ step-3 เท่านั้น
                                             if (!document.getElementById("step-3").classList.contains("hidden")) {
@@ -171,6 +216,12 @@ if (empty($_SESSION['csrf_token'])) {
                                             }
                                         });
                                     });
+
+
+
+
+
+                                    
                                 </script>
 
 
@@ -260,14 +311,10 @@ if (empty($_SESSION['csrf_token'])) {
     <script src="//getbootstrap.com/2.3.2/assets/js/jquery.js"></script>
 
 
-
-
     <!-- datepicker -->
     <script src="plugin/bootstrap-datepicker-thai-thai/js/bootstrap-datepicker.js"></script>
     <script src="plugin/bootstrap-datepicker-thai-thai/js/bootstrap-datepicker-thai.js"></script>
     <script src="plugin/bootstrap-datepicker-thai-thai/js/locales/bootstrap-datepicker.th.js"></script>
-
-
 
 
 

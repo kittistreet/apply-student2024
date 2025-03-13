@@ -1,0 +1,14 @@
+[2025-03-06 16:49:29] ✅ Payment successful for ApplicantID: 250306164904, Amount: 400
+[2025-03-06 16:54:49] 🔄 QR Code validated, status updated to processing for ApplicantID: 250306164950
+[2025-03-06 16:55:16] ✅ Payment successful for ApplicantID: 250306164950, Amount: 400
+[2025-03-06 20:45:04] ❌ Unauthorized access attempt
+[2025-03-06 20:45:55] ⚠️ QR Code not found for ApplicantID: 250306203354
+[2025-03-06 20:46:21] 🔄 QR Code validated, status updated to processing for ApplicantID: 250306204612
+[2025-03-06 20:46:34] ⚠️ QR Code expired for ApplicantID: 250306204612
+[2025-03-06 20:50:14] ⚠️ Incorrect payment amount for ApplicantID: 250306205008, Expected: 400.00, Received: 500
+[2025-03-06 20:50:20] ✅ Payment successful for ApplicantID: 250306205008, Amount: 400
+[2025-03-06 20:53:09] 🔄 QR Code validated, status updated to processing for ApplicantID: 250306205254
+[2025-03-06 20:53:40] ⚠️ Invalid ApplicantID received: 
+[2025-03-06 20:53:51] 🔄 QR Code validated, status updated to processing for ApplicantID: 250306205335
+[2025-03-06 20:53:57] ⚠️ Invalid ApplicantID received: 
+[2025-03-06 20:54:02] ⚠️ QR Code expired for ApplicantID: 250306205335
