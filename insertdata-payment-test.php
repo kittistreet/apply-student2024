@@ -19,8 +19,8 @@ $second = date("s");
 $ApplicantID = "$year$month$day$hour$minute$second";
 
 // กำหนดเวลาหมดอายุ (3 วัน)
-// $expiryTimestamp = strtotime("+3 days");
-$expiryTimestamp = strtotime("+20 second");
+$expiryTimestamp = strtotime("+3 days");
+// $expiryTimestamp = strtotime("+20 second");
 $expiryDateTime = date("Y-m-d H:i:s", $expiryTimestamp);
 
 // สร้าง QR Code ข้อมูล
