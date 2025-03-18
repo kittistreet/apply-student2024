@@ -67,6 +67,8 @@ echo date('Y-m-d H:i:s')."<br>";
             background-color: #0056b3;
         }
     </style>
+
+
     <script>
         // ตั้งค่าเวลาหมดอายุจาก PHP
         let expiryTimestamp = <?php echo $expiryTimestamp * 1000; ?>; // แปลงเป็น milliseconds
@@ -95,6 +97,8 @@ echo date('Y-m-d H:i:s')."<br>";
         setInterval(updateCountdown, 1000);
         window.onload = updateCountdown;
     </script>
+
+    
 </head>
 <body>
 
