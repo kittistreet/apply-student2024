@@ -56,6 +56,9 @@ if (!is_dir("upload/")) {
 $qrcodePath = "upload/$ApplicantID.png";
 file_put_contents($qrcodePath, $qrcode);
 
+
+
+//ปรับฐานข้อมูลส่วนนนี้ ให้บันทึกลงใน transactions
 // บันทึกข้อมูลลงฐานข้อมูล
 $query = "INSERT INTO application_payments (ApplicantID, amount, qr_code, expiry_time, status) VALUES (?, ?, ?, ?, 'pending')";
 $stmt = $conn->prepare($query);
