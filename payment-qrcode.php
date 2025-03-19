@@ -12,10 +12,12 @@ $qrcodeImage = $_SESSION['qrcode_image'];
 $expiryDate = $_SESSION['expiry_date'];
 $applicationId = $_SESSION['ApplicantID'];
 
+
 // แปลงเวลาให้เป็น timestamp สำหรับ JavaScript
 $expiryTimestamp = strtotime($expiryDate);
 
 echo date('Y-m-d H:i:s')."<br>";
+echo $_SESSION['paymentData'];
 
 ?>
 
