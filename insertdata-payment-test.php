@@ -7,7 +7,7 @@ use chillerlan\QRCode\QRCode;
 use chillerlan\QRCode\QROptions;
 
 // กำหนดจำนวนเงินคงที่
-define('FIXED_AMOUNT', "400.00");
+define('FIXED_AMOUNT', "1.00");
 
 // สร้างรหัสผู้สมัคร
 $ApplicantID = date("ymdHis"); // ใช้รูปแบบ ปี+เดือน+วัน+ชั่วโมง+นาที+วินาที
@@ -20,26 +20,32 @@ $currentTime = date("H:i:s"); // ได้เฉพาะเวลา เช่�
 // กำหนดเวลาหมดอายุ (3 วัน)
 $expiryTimestamp = strtotime("+3 days");
 // $expiryTimestamp = strtotime("+20 second");
-$expiryDateTime = date("Y-m-d H:i:s", $expiryTimestamp);
+$expiryDateTime = date("dmY", strtotime("+3 days"));
 
 // สร้าง QR Code ข้อมูล
-$Prefix ="|";
+$prefix ="|";
 $billerID = "099400018814500";
+$suffix = '00';
 $referenceNumber1 = $ApplicantID;
-$referenceNumber2 = "25680001";
+$referenceNumber2 = "25680001201585455413";
 $orm_price_total_arr = explode(".", number_format(FIXED_AMOUNT, 2));
 $amount = "$orm_price_total_arr[0]" . "$orm_price_total_arr[1]";
+$TransactionType = "1";
 
 // ข้อมูล QR Code
 $paymentData = sprintf(
-    "%s\n%s\n%s\n%s\n%s",
+    "%s%s%s\r%s\r%s\r%s\r%s",
     
-    $Prefix&$billerID,
+    $prefix,
+    $billerID,
+    $suffix,
     $referenceNumber1,
     $referenceNumber2,
     $amount,
-    $expiryTimestamp
+    $expiryDateTime
 );
+
+
 
 $options = new QROptions([
     'eccLevel' => QRCode::ECC_L,
@@ -64,9 +70,9 @@ file_put_contents($qrcodePath, $qrcode);
 // $stmt = $conn->prepare($query);
 // $stmt->execute([$ApplicantID, FIXED_AMOUNT, $qrcodePath, $expiryDateTime]);
 
-$query = "INSERT INTO application_transactions (payeeId, transDate, transTime, transRef, channel, termId, amount, reference1, fromBank, path_qr) VALUES (?, ?, ?, ?, 'A', ?, ?, ?, '002', ?)";
+$query = "INSERT INTO application_transactions (payeeId, transDate, transTime, transRef, channel, termId, amount, reference1, fromBank, path_qr) VALUES (?, ?, ?, ?, 'I', ?, ?, ?, '0', ?)";
 $stmt = $conn->prepare($query);
-$stmt->execute([$billerID, $currentDate, $currentTime, $ApplicantID, $ApplicantID, FIXED_AMOUNT, $ApplicantID, $qrcodePath]);
+$stmt->execute([$billerID, $currentDate, $currentTime, $referenceNumber1, $referenceNumber2, FIXED_AMOUNT, $ApplicantID, $qrcodePath]);
 
 
 
@@ -83,7 +89,8 @@ $stmt->execute([$billerID, $currentDate, $currentTime, $ApplicantID, $ApplicantI
 $_SESSION['qrcode_image'] = $qrcodePath;
 $_SESSION['expiry_date'] = $expiryDateTime;
 $_SESSION['ApplicantID'] = $ApplicantID;
-
+$_SESSION['paymentData'] = $paymentData ;
+ 
 // Redirect ไปยังหน้าแสดง QR Code
 header("Location: payment-qrcode.php");
 exit();
