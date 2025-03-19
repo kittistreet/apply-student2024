@@ -10,13 +10,12 @@ use chillerlan\QRCode\QROptions;
 define('FIXED_AMOUNT', "400.00");
 
 // สร้างรหัสผู้สมัคร
-$year = date("y"); 
-$month = date("m");
-$day = date("d");
-$hour = date("H");
-$minute = date("i");
-$second = date("s");
-$ApplicantID = "$year$month$day$hour$minute$second";
+$ApplicantID = date("ymdHis"); // ใช้รูปแบบ ปี+เดือน+วัน+ชั่วโมง+นาที+วินาที
+
+// วันที่และเวลาปัจจุบัน
+$currentDate = date("Y-m-d"); // ได้เฉพาะวันที่ เช่น 2025-03-18
+$currentTime = date("H:i:s"); // ได้เฉพาะเวลา เช่น 14:35:22
+
 
 // กำหนดเวลาหมดอายุ (3 วัน)
 $expiryTimestamp = strtotime("+3 days");
@@ -24,7 +23,8 @@ $expiryTimestamp = strtotime("+3 days");
 $expiryDateTime = date("Y-m-d H:i:s", $expiryTimestamp);
 
 // สร้าง QR Code ข้อมูล
-$billerID = "|099400018814500";
+$Prefix ="|";
+$billerID = "099400018814500";
 $referenceNumber1 = $ApplicantID;
 $referenceNumber2 = "25680001";
 $orm_price_total_arr = explode(".", number_format(FIXED_AMOUNT, 2));
@@ -34,7 +34,7 @@ $amount = "$orm_price_total_arr[0]" . "$orm_price_total_arr[1]";
 $paymentData = sprintf(
     "%s\n%s\n%s\n%s\n%s",
     
-    $billerID,
+    $Prefix&$billerID,
     $referenceNumber1,
     $referenceNumber2,
     $amount,
@@ -60,9 +60,24 @@ file_put_contents($qrcodePath, $qrcode);
 
 //ปรับฐานข้อมูลส่วนนนี้ ให้บันทึกลงใน transactions
 // บันทึกข้อมูลลงฐานข้อมูล
-$query = "INSERT INTO application_payments (ApplicantID, amount, qr_code, expiry_time, status) VALUES (?, ?, ?, ?, 'pending')";
+// $query = "INSERT INTO application_payments (ApplicantID, amount, qr_code, expiry_time, status) VALUES (?, ?, ?, ?, 'pending')";
+// $stmt = $conn->prepare($query);
+// $stmt->execute([$ApplicantID, FIXED_AMOUNT, $qrcodePath, $expiryDateTime]);
+
+$query = "INSERT INTO application_transactions (payeeId, transDate, transTime, transRef, channel, termId, amount, reference1, fromBank, path_qr) VALUES (?, ?, ?, ?, 'A', ?, ?, ?, '002', ?)";
 $stmt = $conn->prepare($query);
-$stmt->execute([$ApplicantID, FIXED_AMOUNT, $qrcodePath, $expiryDateTime]);
+$stmt->execute([$billerID, $currentDate, $currentTime, $ApplicantID, $ApplicantID, FIXED_AMOUNT, $ApplicantID, $qrcodePath]);
+
+
+
+
+
+
+
+
+
+
+
 
 // บันทึกค่าใน SESSION
 $_SESSION['qrcode_image'] = $qrcodePath;
