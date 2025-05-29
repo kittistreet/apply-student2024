@@ -97,17 +97,17 @@ if (empty($_SESSION['csrf_token'])) {
                             <form action="insertdata-step1.php" name="myForm" method="post" id="multiStepForm" enctype="multipart/form-data" novalidate>
 
                                 <div class="container">
-                                    <div id="step-1">
+                                    <div id="step-1" class="hidden">
                                         <?php include 'stepPDPA.php'; ?>
                                     </div>
 
 
-                                    <div id="step-2" class="hidden">
+                                    <div id="step-2" class="hidden" >
                                         <?php include 'step2.php'; ?>
                                     </div>
 
 
-                                    <div id="step-3" class="hidden">
+                                    <div id="step-3">
                                         <?php include 'step3.php'; ?>
                                     </div>
 
