@@ -17,7 +17,7 @@ session_start();
         <div class="form-group row">
             <div class="col-sm-2 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">คำนำหน้า<font style="color:crimson;">*</font></label>
-                <select class="form-control" id="Title" name="Title">
+                <select class="form-control" id="Title" name="Title" data-required="true">
                     <option>-โปรดระบุ-</option>
                     <option value="1">นาย</option>
                     <option value="2">นาง</option>
@@ -26,11 +26,11 @@ session_start();
             </div>
             <div class="col-sm-5 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">ชื่อ<font style="color:crimson;">*</font></label>
-                <input type="text" class="form-control form-control-user" id="firstname" name="firstname" placeholder="ระบุชื่อ...">
+                <input type="text" class="form-control form-control-user" id="firstname" name="firstname" placeholder="ระบุชื่อ..." data-required="true">
             </div>
             <div class="col-sm-5 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">สกุล<font style="color:crimson;">*</font></label>
-                <input type="text" class="form-control form-control-user" id="lastname" name="lastname" placeholder="ระบุนามสกุล...">
+                <input type="text" class="form-control form-control-user" id="lastname" name="lastname" placeholder="ระบุนามสกุล..." data-required="true">
             </div>
         </div>
 
@@ -38,7 +38,7 @@ session_start();
         <div class="form-group row">
             <div class="col-sm-2 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">คำนำหน้า(ENG.)<font style="color:crimson;">*</font></label>
-                <select class="form-control" id="Catholic_N" name="Catholic_N">
+                <select class="form-control" id="Catholic_N" name="Catholic_N" data-required="true">
                     <option>-โปรดระบุ-</option>
                     <option value="1">Mr.</option>
                     <option value="2">Mrs.</option>
@@ -47,11 +47,11 @@ session_start();
             </div>
             <div class="col-sm-5 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">Firstname<font style="color:crimson;">*</font></label>
-                <input type="text" class="form-control form-control-user" id="gradYear_${recordCount}" placeholder="ระบุชื่อ Eng...">
+                <input type="text" class="form-control form-control-user" id="gradYear_${recordCount}" placeholder="ระบุชื่อ Eng..." data-required="true">
             </div>
             <div class="col-sm-5 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">Lastname<font style="color:crimson;">*</font></label>
-                <input type="text" class="form-control form-control-user" id="gradYear_${recordCount}" placeholder="ระบุนามสกุล Eng...">
+                <input type="text" class="form-control form-control-user" id="gradYear_${recordCount}" placeholder="ระบุนามสกุล Eng..." data-required="true">
             </div>
         </div>
 
@@ -92,7 +92,7 @@ session_start();
 
             <div class="col-sm-2 mb-3 mb-sm-0">
                 <label for="day" class="form-label"> <br> </label>
-                <select class="form-control" id="day" disabled onchange="calculateAge()">
+                <select class="form-control" id="day" disabled onchange="calculateAge()" data-required="true">
                     <option value="" selected>-วันเกิด-</option>
                 </select>
             </div>
@@ -108,7 +108,7 @@ session_start();
 
             <div class="col-sm-3 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">เพศ<font style="color:crimson;">*</font></label>
-                <select class="form-control" id="Catholic_N" name="Catholic_N">
+                <select class="form-control" id="Catholic_N" name="Catholic_N" data-required="true">
                     <option>-โปรดระบุ-</option>
                     <option value="1">หญิง</option>
                     <option value="2">ชาย</option>
@@ -196,15 +196,15 @@ session_start();
 
             <div class="col-sm-2 mb-3 mb-sm-0">
                 <label for="age" style="font-weight: bold;">เชื้อชาติ<font style="color:crimson;">*</font></label>
-                <input type="text" class="form-control form-control-user" name=" " placeholder="ระบุเชื้อชาติ">
+                <input type="text" class="form-control form-control-user" name=" " placeholder="ระบุเชื้อชาติ" data-required="true">
             </div>
             <div class="col-sm-2 mb-3 mb-sm-0">
                 <label for="age" style="font-weight: bold;">สัญชาติ<font style="color:crimson;">*</font></label>
-                <input type="text" class="form-control form-control-user" name=" " placeholder="ระบุสัญชาติ">
+                <input type="text" class="form-control form-control-user" name=" " placeholder="ระบุสัญชาติ" data-required="true">
             </div>
             <div class="col-sm-4 mb-3 mb-sm-0">
                 <label for="age" style="font-weight: bold;">ศาสนา<font style="color:crimson;">*</font></label>
-                <input type="text" class="form-control form-control-user" name=" " placeholder="ระบุศาสนา">
+                <input type="text" class="form-control form-control-user" name=" " placeholder="ระบุศาสนา" data-required="true">
             </div>
             <div class="col-sm-4 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">จังหวัดที่เกิด<font style="color:crimson;">*</font></label>
@@ -219,7 +219,7 @@ session_start();
 
             <div class="col-sm-4 mb-3 mb-sm-0">
                 <label for="age" style="font-weight: bold;">รหัสบัตรประจำตัวประชาชน/Passport<font style="color:crimson;">*</font></label>
-                <input type="text" class="form-control form-control-user" name=" " placeholder="ระบุรหัสบัตรประจำตัวประชาชน">
+                <input type="text" class="form-control form-control-user" name=" " placeholder="ระบุรหัสบัตรประจำตัวประชาชน" data-required="true">
             </div>
             <div class="col-sm-2 mb-3 mb-sm-0">
                 <label for="age" style="font-weight: bold;">วันที่ออกบัตร<font style="color:crimson;">*</font></label>
@@ -232,7 +232,7 @@ session_start();
 
             <div class="col-sm-4 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">ออกให้ ณ จังหวัด<font style="color:crimson;">*</font></label>
-                <select class="form-control" id="province_6" name="province_b">
+                <select class="form-control" id="province_6" name="province_b" data-required="true">
                     <option value="">-โปรดเลือกจังหวัด-</option>
                 </select>
             </div>
@@ -336,18 +336,18 @@ session_start();
         <div class="form-group row">
             <div class="col-sm-6 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">น้ำหนัก<font style="color:crimson;">*</font></label>
-                <input type="text" class="form-control form-control-user" placeholder="ระบุน้ำหนัก... (กิโลกรัม)">
+                <input type="text" class="form-control form-control-user" placeholder="ระบุน้ำหนัก... (กิโลกรัม)" data-required="true">
             </div>
             <div class="col-sm-6 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">ส่วนสูง<font style="color:crimson;">*</font></label>
-                <input type="text" class="form-control form-control-user" placeholder="ระบุส่วนสูง...(เซนติเมตร)">
+                <input type="text" class="form-control form-control-user" placeholder="ระบุส่วนสูง...(เซนติเมตร)" data-required="true">
             </div>
         </div>
 
         <div class="form-group row">
             <div class="col-sm-6 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">ประวัติการแพ้ยา<font style="color:crimson;">*</font></label>
-                <select class="form-control" id="allergy">
+                <select class="form-control" id="allergy" data-required="true">
                     <option value="">-โปรดเลือก ประวัติการแพ้ยา-</option>
                     <option value="1">ไม่มี ประวัติการแพ้ยา</option>
                     <option value="2">มี ประวัติการแพ้ยา</option>
@@ -363,7 +363,7 @@ session_start();
         <div class="form-group row">
             <div class="col-sm-6 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">โรคประจำตัว<font style="color:crimson;">*</font></label>
-                <select class="form-control" id="disease">
+                <select class="form-control" id="disease" data-required="true">
                     <option value="">-โปรดเลือก-</option>
                     <option value="1">ไม่มี โรคประจำตัว</option>
                     <option value="2">มี โรคประจำตัว</option>
@@ -387,7 +387,7 @@ session_start();
 
         <div class="form-group">
             <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="customCheck">
+                <input type="checkbox" class="custom-control-input" id="customCheck" data-required="true">
                 <label class="custom-control-label" for="customCheck">
                     <font style="color:crimson;">*</font>ข้าพเจ้าสมบูรณ์ทั้งร่างกาย จิตใจและปราศจากโรคอันเป็นอุปสรรคต่อการศึกษา
                 </label>
@@ -419,7 +419,7 @@ session_start();
         <div class="form-group row">
             <div class="col-sm-12 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">ความประสงค์ขอกู้ทุนการศึกษา<font style="color:crimson;">*</font></label>
-                <select class="form-control" id="disease">
+                <select class="form-control" id="disease" data-required="true">
                     <option value="">-โปรดเลือกความประสงค์ขอกู้ทุนการศึกษา-</option>
                     <option value="1">ไม่มีความประสงค์ขอกู้ทุนการศึกษา</option>
                     <option value="2">มีความประสงค์ขอกู้ทุนการศึกษา (กยศ.)</option>
@@ -457,7 +457,7 @@ session_start();
         <div class="form-group row">
             <div class="col-sm-12 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">โรงเรียนในเครือคาทอลิก<font style="color:crimson;">*</font></label>
-                <select class="form-control" id="Catholic_N" name="Catholic_N">
+                <select class="form-control" id="Catholic_N" name="Catholic_N" data-required="true">
                     <option>-โปรดเลือกโรงเรียนในเครือคาทอลิก-</option>
                     <option>ใช่</option>
                     <option>ไม่ใช่</option>
@@ -567,17 +567,17 @@ session_start();
                 </div>
                 <div class="col-sm-3 mb-3 mb-sm-0">
                     <label style="font-weight: bold;">ชื่อสถานศึกษา<font style="color:crimson;">*</font></label>
-                    <input type="text" class="form-control form-control-user" id="schoolName_1" placeholder="โปรดระบุชื่อสถานศึกษา...">
+                    <input type="text" class="form-control form-control-user" id="schoolName_1" placeholder="โปรดระบุชื่อสถานศึกษา..." data-required="true">
                 </div>
                 <div class="col-sm-3 mb-3 mb-sm-0">
                     <label style="font-weight: bold;">จังหวัด<font style="color:crimson;">*</font></label>
-                    <select class="form-control" id="province_1" name="province">
+                    <select class="form-control" id="province_1" name="province" data-required="true">
                         <option value="">-โปรดเลือกจังหวัด-</option>
                     </select>
                 </div>
                 <div class="col-sm-2 mb-3 mb-sm-0">
                     <label style="font-weight: bold;">ปีที่สำเร็จการศึกษา<font style="color:crimson;">*</font></label>
-                    <input type="text" class="form-control form-control-user" id="gradYear_1" placeholder="โปรดระบุ(พ.ศ.)...">
+                    <input type="text" class="form-control form-control-user" id="gradYear_1" placeholder="โปรดระบุ(พ.ศ.)..." data-required="true">
                 </div>
             </div>
         </div>
@@ -598,92 +598,148 @@ session_start();
             </div>
         </div>
 
+
+
+        <!-- HTML ปรับปรุง พร้อมใส่ id ให้กับ <select> และ input ทั้งหมด -->
         <div class="form-group row">
             <div class="col-sm-4 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">ชื่อบิดา<font style="color:crimson;">*</font></label>
-                <input type="text" class="form-control form-control-user" name=" " placeholder="ระบุชื่อบิดา...">
+                <input type="text" class="form-control form-control-user" name="father_name" placeholder="ระบุชื่อบิดา..." data-required="true">
             </div>
             <div class="col-sm-4 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">นามสกุล<font style="color:crimson;">*</font></label>
-                <input type="text" class="form-control form-control-user" name=" " placeholder="ระบุนามสกุล...">
+                <input type="text" class="form-control form-control-user" name="father_surname" placeholder="ระบุนามสกุล..." data-required="true">
             </div>
             <div class="col-sm-4 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">สถานภาพการมีชีวิต<font style="color:crimson;">*</font></label>
-                <select class="form-control" name=" ">
+                <select class="form-control" id="life_status" name="life_status" data-required="true">
                     <option value="">-โปรดเลือกสถานภาพ-</option>
                     <option value="1">มีชีวิต</option>
                     <option value="2">เสียชีวิต</option>
-                    <option value="2">สาบสูญ</option>
-                    <option value="2">คนไร้ความสามารถ</option>
+                    <option value="3">สาบสูญ</option>
+                    <option value="4">คนไร้ความสามารถ</option>
                 </select>
             </div>
         </div>
         <div class="form-group row">
             <div class="col-sm-3 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">อายุ</label>
-                <input type="text" class="form-control form-control-user" name=" " placeholder="ระบุอายุบิดา...">
+                <input type="text" id="father_age" class="form-control form-control-user" name="father_age" placeholder="ระบุอายุบิดา..." disabled data-required="true">
             </div>
             <div class="col-sm-3 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">อาชีพ</label>
-                <input type="text" class="form-control form-control-user" name=" " placeholder="ระบุอาชีพบิดา...">
+                <input type="text" id="father_job" class="form-control form-control-user" name="father_job" placeholder="ระบุอาชีพบิดา..." disabled data-required="true">
             </div>
             <div class="col-sm-3 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">ที่อยู่ปัจจุบันจังหวัด</label>
-                <select class="form-control" id="province_8" name="province_f">
-                    <option value="">-โปรดเลือกจังหวัด-</option>
+                <select class="form-control" id="province_8" name="province_f" disabled>
+                    <option value="">-โปรดเลือกจังหวัด-</option data-required="true">
                 </select>
             </div>
             <div class="col-sm-3 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">เบอร์โทรศัพท์</label>
-                <input type="text" class="form-control form-control-user" name=" " placeholder="ระบุเบอร์โทรศัพท์...">
+                <input type="text" id="father_phone" class="form-control form-control-user" name="father_phone" placeholder="ระบุเบอร์โทรศัพท์..." disabled data-required="true">
             </div>
         </div>
+
+        <!-- JavaScript ฟังก์ชันเปิด/ปิดช่องข้อมูลตามสถานภาพ -->
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const lifeStatus = document.getElementById("life_status");
+                const age = document.getElementById("father_age");
+                const job = document.getElementById("father_job");
+                const province = document.getElementById("province_8");
+                const phone = document.getElementById("father_phone");
+
+                function toggleInputs() {
+                    const enable = lifeStatus.value === "1"; // ถ้ามีชีวิต
+                    age.disabled = !enable;
+                    job.disabled = !enable;
+                    province.disabled = !enable;
+                    phone.disabled = !enable;
+                }
+
+                lifeStatus.addEventListener("change", toggleInputs);
+                toggleInputs(); // เรียกตอนโหลดหน้าเผื่อมีค่าอยู่แล้ว
+            });
+        </script>
+
+
+
+
+
+
+
 
         <br>
 
         <hr>
 
 
+        <!-- HTML ปรับปรุงสำหรับข้อมูลมารดา พร้อม id และสคริปต์ควบคุม -->
         <div class="form-group row">
             <div class="col-sm-4 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">ชื่อมารดา<font style="color:crimson;">*</font></label>
-                <input type="text" class="form-control form-control-user" name=" " placeholder="ระบุชื่อมารดา...">
+                <input type="text" class="form-control form-control-user" name="mother_name" placeholder="ระบุชื่อมารดา..." data-required="true">
             </div>
             <div class="col-sm-4 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">นามสกุล<font style="color:crimson;">*</font></label>
-                <input type="text" class="form-control form-control-user" name=" " placeholder="ระบุนามสกุล...">
+                <input type="text" class="form-control form-control-user" name="mother_surname" placeholder="ระบุนามสกุล..." data-required="true">
             </div>
             <div class="col-sm-4 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">สถานภาพการมีชีวิต<font style="color:crimson;">*</font></label>
-                <select class="form-control" name=" ">
+                <select class="form-control" id="mother_life_status" name="mother_life_status" data-required="true">
                     <option value="">-โปรดเลือกสถานภาพ-</option>
                     <option value="1">มีชีวิต</option>
                     <option value="2">เสียชีวิต</option>
-                    <option value="2">สาบสูญ</option>
-                    <option value="2">คนไร้ความสามารถ</option>
+                    <option value="3">สาบสูญ</option>
+                    <option value="4">คนไร้ความสามารถ</option>
                 </select>
             </div>
         </div>
         <div class="form-group row">
             <div class="col-sm-3 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">อายุ</label>
-                <input type="text" class="form-control form-control-user" name=" " placeholder="ระบุอายุมารดา...">
+                <input type="text" id="mother_age" class="form-control form-control-user" name="mother_age" placeholder="ระบุอายุมารดา..." disabled data-required="true">
             </div>
             <div class="col-sm-3 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">อาชีพ</label>
-                <input type="text" class="form-control form-control-user" name=" " placeholder="ระบุอาชีพมารดา...">
+                <input type="text" id="mother_job" class="form-control form-control-user" name="mother_job" placeholder="ระบุอาชีพมารดา..." disabled data-required="true">
             </div>
             <div class="col-sm-3 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">ที่อยู่ปัจจุบันจังหวัด</label>
-                <select class="form-control" id="province_9" name="province_m">
+                <select class="form-control" id="province_9" name="province_m" disabled data-required="true">
                     <option value="">-โปรดเลือกจังหวัด-</option>
                 </select>
             </div>
             <div class="col-sm-3 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">เบอร์โทรศัพท์</label>
-                <input type="text" class="form-control form-control-user" name=" " placeholder="ระบุเบอร์โทรศัพท์...">
+                <input type="text" id="mother_phone" class="form-control form-control-user" name="mother_phone" placeholder="ระบุเบอร์โทรศัพท์..." disabled data-required="true">
             </div>
         </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const motherLifeStatus = document.getElementById("mother_life_status");
+                const motherAge = document.getElementById("mother_age");
+                const motherJob = document.getElementById("mother_job");
+                const provinceM = document.getElementById("province_9");
+                const motherPhone = document.getElementById("mother_phone");
+
+                function toggleMotherInputs() {
+                    const enable = motherLifeStatus.value === "1";
+                    motherAge.disabled = !enable;
+                    motherJob.disabled = !enable;
+                    provinceM.disabled = !enable;
+                    motherPhone.disabled = !enable;
+                }
+
+                motherLifeStatus.addEventListener("change", toggleMotherInputs);
+                toggleMotherInputs();
+            });
+        </script>
+
+
 
 
 
@@ -701,14 +757,14 @@ session_start();
         <div class="form-group row">
             <div class="col-sm-12 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">สถาณีรถไฟฟ้าที่อยู่ใกล้ <font style="font-size: 14px; color:crimson; ">*กรณีไม่ได้อยู่ใกล้สถานีรถไฟฟ้า BTS/MRT ให้ใส่ ขีด(-)</font></label>
-                <input type="text" class="form-control form-control-user" name=" " placeholder="ระบุสถาณีรถไฟฟ้าที่อยู่ใกล้...">
+                <input type="text" class="form-control form-control-user" name=" " placeholder="ระบุสถาณีรถไฟฟ้าที่อยู่ใกล้..." data-required="true">
             </div>
         </div>
 
         <div class="form-group row">
             <div class="col-sm-12 mb-3 mb-sm-0">
                 <label style="font-weight: bold;">ที่อยู่ที่ใช้ในการติดต่อ<font style="color:crimson;">*</font></label>
-                <select class="form-control" id="Address_2" name="Address_2">
+                <select class="form-control" id="Address_2" name="Address_2" data-required="true" data-required="true">
                     <option value="">-โปรดเลือกที่อยู่ที่ใช้ในการติดต่อ-</option>
                     <option value="1">ใช้ที่อยู่ปัจจุบันในการติดต่อ</option>
                     <option value="2">ใช้ที่อยู่ใหม่ในการติดต่อ</option>
@@ -728,7 +784,7 @@ session_start();
 
                 <div class="col-sm-4 mb-3 mb-sm-0">
                     <label style="font-weight: bold;">จังหวัด<font style="color:crimson;">*</font></label>
-                    <select class="form-control" id="province_10" name="province_h" disabled>
+                    <select class="form-control" id="province_10" name="province_h" disabled data-required="true">
                         <option value="">-โปรดเลือกจังหวัด-</option>
                     </select>
                 </div>
@@ -737,33 +793,33 @@ session_start();
             <div class="form-group row">
                 <div class="col-sm-4 mb-3 mb-sm-0">
                     <label style="font-weight: bold;">เขต/อำเภอ<font style="color:crimson;">*</font></label>
-                    <select class="form-control" id="District_2" name="District_2" disabled>
+                    <select class="form-control" id="District_2" name="District_2" disabled data-required="true">
                         <option value="">-โปรดเลือก เขต/อำเภอ-</option>
                     </select>
                 </div>
 
                 <div class="col-sm-4 mb-3 mb-sm-0">
                     <label style="font-weight: bold;">แขวง/ตำบล<font style="color:crimson;">*</font></label>
-                    <select class="form-control" id="Sub_District_2" name="Sub_District_2" disabled>
+                    <select class="form-control" id="Sub_District_2" name="Sub_District_2" disabled data-required="true">
                         <option value="">-โปรดเลือก แขวง/ตำบล-</option>
                     </select>
                 </div>
 
                 <div class="col-sm-4 mb-3 mb-sm-0">
                     <label style="font-weight: bold;">รหัสไปรษณีย์<font style="color:crimson;">*</font></label>
-                    <input type="text" class="form-control form-control-user" id="zipcode_2" placeholder="ระบุรหัสไปรษณีย์..." disabled>
+                    <input type="text" class="form-control form-control-user" id="zipcode_2" placeholder="ระบุรหัสไปรษณีย์..." disabled data-required="true">
                 </div>
             </div>
 
             <div class="form-group row">
                 <div class="col-sm-6 mb-3 mb-sm-0">
                     <label style="font-weight: bold;">โทรศัพท์(มือถือ)<font style="color:crimson;">*</font></label>
-                    <input type="text" class="form-control form-control-user" placeholder="ระบุเบอร์โทรศัพท์..." disabled>
+                    <input type="text" class="form-control form-control-user" placeholder="ระบุเบอร์โทรศัพท์..." disabled data-required="true">
                 </div>
 
                 <div class="col-sm-6 mb-3 mb-sm-0">
                     <label style="font-weight: bold;">อีเมล<font style="color:crimson;">*</font></label>
-                    <input type="text" class="form-control form-control-user" placeholder="ระบุอีเมล..." disabled>
+                    <input type="text" class="form-control form-control-user" placeholder="ระบุอีเมล..." disabled data-required="true">
                 </div>
             </div>
 
