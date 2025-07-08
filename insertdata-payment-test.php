@@ -64,23 +64,10 @@ file_put_contents($qrcodePath, $qrcode);
 
 
 
-//ปรับฐานข้อมูลส่วนนนี้ ให้บันทึกลงใน transactions
-// บันทึกข้อมูลลงฐานข้อมูล
-// $query = "INSERT INTO application_payments (ApplicantID, amount, qr_code, expiry_time, status) VALUES (?, ?, ?, ?, 'pending')";
-// $stmt = $conn->prepare($query);
-// $stmt->execute([$ApplicantID, FIXED_AMOUNT, $qrcodePath, $expiryDateTime]);
 
 $query = "INSERT INTO application_transactions (payeeId, transDate, transTime, transRef, channel, termId, amount, reference1, fromBank, path_qr) VALUES (?, ?, ?, ?, 'I', ?, ?, ?, '0', ?)";
 $stmt = $conn->prepare($query);
 $stmt->execute([$billerID, $currentDate, $currentTime, $referenceNumber1, $referenceNumber2, FIXED_AMOUNT, $ApplicantID, $qrcodePath]);
-
-
-
-
-
-
-
-
 
 
 
